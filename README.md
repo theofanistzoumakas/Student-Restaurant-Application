@@ -59,11 +59,11 @@
 	- 📊See statistics about:
 
 		- Rated foods 
-		(The model Baysian approximation for k scale rating is used for this statistic file in project)
+			- (The model Baysian approximation for k scale rating is used for this statistic file in project)
 
-		File in project -> RatingsService, countRatings method
+                File in project -> RatingsService, countRatings method
 
-		You can see the source “[here](https://medium.com/tech-that-works/wilson-lower-bound-score-and-bayesian-approximation-for-k-star-scale-rating-to-rate-products-c67ec6e30060)”
+				**You can see the source “[here](https://medium.com/tech-that-works/wilson-lower-bound-score-and-bayesian-approximation-for-k-star-scale-rating-to-rate-products-c67ec6e30060)”**
 
 		- Vegan foods
 
