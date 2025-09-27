@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ανακοινώσεις</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/custom_styles.css">
+</head>
+<body>
+<div class="backgroundDiv"><div class="overlayDiv"></div></div>
+
+<div class="contentDiv">
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a th:if="${admin}" class="navbar-brand" th:href="@{/restaurantMenu/viewRestaurantMenu/{admin}(admin=${restaurantAdmin})}">Αρχική</a>
+        <a th:unless="${admin}" class="navbar-brand" th:href="@{/RestaurantMenuCustomer/viewRestaurantMenu/{customer}(customer=${restaurantCustomer})}">Αρχική</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav" th:if="${admin}">
+                <a class="nav-link" th:if="${menusCount}"
+                   th:href="@{/restaurantMenu/addRestaurantMenu/{admin}(admin=${restaurantAdmin})}">
+                    Προσθήκη Νέου Μενού
+                </a>
+                <a class="nav-link active" th:href="@{/restaurantMenu/announcements/{admin}(admin=${restaurantAdmin})}">Ανακοινώσεις</a>
+                <a class="nav-link" th:href="@{/restaurantMenu/viewAllergenList/{admin}(admin=${restaurantAdmin})}">Αλλεργιογόνα</a>
+                <a class="nav-link" th:href="@{/restaurantMenu/restaurantRatings/{admin}(admin=${restaurantAdmin})}">Αξιολογήσεις Φαγητών</a>
+                <a class="nav-link" th:href="@{/restaurantMenu/showAllDishes/{admin}(admin=${restaurantAdmin})}">Πιάτα</a>
+                <form name="logoutButton" class="d-flex" action="/logout" method="post">
+                    <button class="btn btn-outline-primary" type="submit">Αποσύνδεση</button>
+                </form>
+            </div>
+            <div class="navbar-nav" th:unless="${admin}">
+                <a class="nav-link active" th:href="@{/RestaurantMenuCustomer/announcements/{customer}(customer=${restaurantCustomer})}">Ανακοινώσεις</a>
+                <a class="nav-link" th:href="@{/RestaurantMenuCustomer/viewAllergenList/{customer}(customer=${restaurantCustomer})}">
+                    Αλλεργιογόνα
+                </a>
+                <a class="nav-link" th:href="@{/RestaurantMenuCustomer/viewRatedDishes/{customer}(customer=${restaurantCustomer})}">Οι Αξιολογήσεις μου</a>
+                <form name="logoutButton" class="d-flex" action="/logout" method="post">
+                    <button class="btn btn-outline-primary" type="submit">Αποσύνδεση</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+<h2 data-aos="fade-up" class="text-center mt-3">Ανακοινώσεις</h2>
+
+<form id="announcementForm" th:if="${admin}" method="post" action="/restaurantMenu/updateAnnouncementList">
+    <div data-aos="fade-up" id="announcementsAdmin">
+
+                <label>
+                    <input name="announcementTitle" type="hidden" value="start" readonly>
+                </label>
+                <label>
+                    <input name="announcementDescription" type="hidden" value="start" readonly>
+                </label>
+
+        <ul class="list-group" th:each="announcement : ${announcements}">
+            <li class="list-group-item mx-auto w-75 mb-3">
+
+                <p class="text-center">Τίλος</p>
+                <strong><p class="text-center" th:text="${announcement.getTitle()}"></p></strong>
+
+                <p class="text-center">Περιγραφή</p>
+                <strong><p class="text-center" th:text="${announcement.getDescription()}"></p></strong>
+
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary mt-5" type="submit" name="action" th:value="${announcement.getId().toString()}">Διαγραφή Ανακοίνωσης</button>
+                </div>
+            </li>
+
+
+        </ul>
+    </div>
+    <div data-aos="fade-up" class="d-flex justify-content-center mb-5">
+        <button class="btn btn-primary mt-3 mb-3" id="addAnnouncementButtonId" type="button">Προσθήκη Νέας Ανακοίνωσης</button>
+    </div>
+    <div data-aos="fade-up" class="d-flex justify-content-center mb-5">
+        <button class="btn btn-primary mt-5 mb-3" type="submit" name="action" th:value="'add'">Αποθήκευση Αλλαγών</button>
+    </div>
+</form>
+
+
+<div th:unless="${admin}">
+    <ul class="list-group" th:each="announcement : ${announcements}">
+        <li data-aos="fade-up" class="list-group-item mx-auto w-75 mb-3 mt-5">
+            <p class="text-center">Τίλος</p>
+            <strong><p class="text-center" th:text="${announcement.getTitle()}"></p></strong>
+            <p class="text-center">Περιγραφή</p>
+            <strong><p class="text-center" th:text="${announcement.getDescription()}"></p></strong>
+        </li>
+    </ul>
+</div>
+</div>
+
+
+<script src="/js/clickedButton.js"></script>
+<script src="/js/confirmDeleteMenuOrSignOut.js"></script>
+<script src="/js/editAnnouncementList.js"></script>
+<script src="/js/announcementInputChecking.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>

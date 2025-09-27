@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Αρχική</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/custom_styles.css">
+</head>
+<body>
+<div class="backgroundDiv"><div class="overlayDiv"></div></div>
+
+<div class="contentDiv">
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/RestaurantMenuCustomer/viewRestaurantMenu}">Αρχική</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" th:href="@{/RestaurantMenuCustomer/announcements/{customer}(customer=${restaurantCustomer})}">Ανακοινώσεις</a>
+                <a class="nav-link" th:href="@{/RestaurantMenuCustomer/viewAllergenList/{customer}(customer=${restaurantCustomer})}">Αλλεργιογόνα</a>
+
+                <a class="nav-link" th:href="@{/RestaurantMenuCustomer/viewRatedDishes/{customer}(customer=${restaurantCustomer})}">Οι Αξιολογήσεις μου</a>
+
+
+                <form name="logoutButton" class="d-flex" action="/logout" method="post">
+                    <button class="btn btn-outline-primary" type="submit">Αποσύνδεση</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</nav>
+
+<div data-aos="fade-up">
+<h3 class="text-center">Το Μενού</h3>
+</div>
+
+<div class="w-65 mx-auto p-3" data-aos="fade-up">
+    <div class="accordion" id="menuAccordion">
+        <div class="accordion-item text-center" th:each="item, iter : ${restaurantMenus}">
+            <h2 class="accordion-header" th:id="'heading'+${item.getId()}">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" th:data-bs-target="'#collapse'+${iter.index}"
+                        aria-expanded="false" th:aria-controls="'collapse'+${iter.index}" th:text="${item.getDay()}">
+                </button>
+            </h2>
+            <div th:id="'collapse'+${iter.index}" class="accordion-collapse collapse" th:aria-labelled-by="'heading'+${iter.index}"
+                 data-bs-parent="#menuAccordion">
+                <div class="accordion-body">
+                    <h6 class="text-center">Πρωϊνό</h6>
+                    <div class="container mt-4">
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6 col-md-4" th:each="menuFood, iterBreakfast: ${item.getBreakfast()}">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body" data-aos="flip-left">
+                                        <form action="/RestaurantMenuCustomer/editFavouriteFoodPost" method="post">
+                                            <p class="text-center" th:text="${menuFood.getRestaurantFood().getName()}"></p>
+                                            <label>
+                                                <input
+                                                        th:attr="data-bs-target='#breakfastDescription'+${iter.index}+${iterBreakfast.index}"
+                                                        type="hidden" name="foodName"
+                                                        th:value="${menuFood.getRestaurantFood().getName()}" readonly>
+                                            </label>
+                                            <div class="card-text">
+                                                <div class="row text-center">
+                                                    <p th:text="${menuFood.getRestaurantFood().getDescription()}"></p>
+                                                    <label>
+                                                        <input type="hidden" name="foodDescription"
+                                                               th:value="${menuFood.getRestaurantFood().getDescription()}" readonly>
+                                                    </label>
+                                                </div>
+                                                <div class="row text-center">
+                                                    <label>
+                                                        <input class="form-control form-control-sm" th:unless="${customerFavouriteFoodNames.contains(menuFood.getRestaurantFood().getName())} and ${customerFavouriteFoodDescription.contains(menuFood.getRestaurantFood().getDescription())}" type="range" name="rating" value="0" min="0" max="5" style="touch-action: pan-y">
+                                                    </label>
+                                                </div>
+                                                <div class="row text-center">
+                                                    <p th:if="${menuFood.getRestaurantFood().getVegetarian() && !menuFood.getRestaurantFood().getVegan()}" th:text="'Vegetarian'" style="color: forestgreen;"></p>
+                                                    <p th:if="${menuFood.getRestaurantFood().getVegetarian() && menuFood.getRestaurantFood().getVegan()}" th:text="'Vegan'" style="color: forestgreen;"></p>
+                                                    <label>
+                                                        <input type="hidden" name="isVegetarian" th:value="${menuFood.getRestaurantFood().getVegetarian()}" readonly>
+                                                        <input type="hidden" name="isVegan" th:value="${menuFood.getRestaurantFood().getVegan()}" readonly>
+                                                    </label>
+                                                </div>
+                                                <div class="row text-center">
+                                                    <p th:if="${customerAllergens.containsKey(menuFood.getRestaurantFood().getFoodId())} and ${customerAllergens.get(menuFood.getRestaurantFood().getFoodId())}">Ενδέχεται να υπάρχει Αλλεργιογόνο</p>
+                                                </div>
+                                                <div class="row">
+                                                    <button class="btn btn-primary btn-sm mt-3 mb-3" th:unless="${customerFavouriteFoodNames.contains(menuFood.getRestaurantFood().getName())} and ${customerFavouriteFoodDescription.contains(menuFood.getRestaurantFood().getDescription())}" type="submit" name="foodAction" value="add">Προσθήκη Αξιολόγησης</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="text-center">Μεσημεριανό</h6>
+                    <div class="container mt-4">
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6 col-md-4" th:each="menuFood, iterLunch: ${item.getLunch()}">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body" data-aos="flip-left">
+                                        <form action="/RestaurantMenuCustomer/editFavouriteFoodPost" method="post">
+                                            <p class="text-center" th:text="${menuFood.getRestaurantFood().getName()}"></p>
+                                            <label>
+                                                <input
+                                                        th:attr="data-bs-target='#lunchDescription'+${iter.index}+${iterLunch.index}"
+                                                        type="hidden" name="foodName"
+                                                        th:value="${menuFood.getRestaurantFood().getName()}" readonly>
+                                            </label>
+                                            <div class="card-text">
+                                                <div class="row text-center">
+                                                    <p th:text="${menuFood.getRestaurantFood().getDescription()}"></p>
+                                                    <label>
+                                                        <input type="hidden" name="foodDescription"
+                                                               th:value="${menuFood.getRestaurantFood().getDescription()}" readonly>
+                                                    </label>
+                                                </div>
+                                                <div class="row text-center">
+                                                    <label>
+                                                        <input class="form-control form-control-sm" th:unless="${customerFavouriteFoodNames.contains(menuFood.getRestaurantFood().getName())} and ${customerFavouriteFoodDescription.contains(menuFood.getRestaurantFood().getDescription())}" type="range" name="rating" value="0" min="0" max="5" style="touch-action: pan-y">
+                                                    </label>
+                                                </div>
+                                                <div class="row text-center">
+                                                    <p th:if="${menuFood.getRestaurantFood().getVegetarian() && !menuFood.getRestaurantFood().getVegan()}" th:text="'Vegetarian'" style="color: forestgreen;"></p>
+                                                    <p th:if="${menuFood.getRestaurantFood().getVegetarian() && menuFood.getRestaurantFood().getVegan()}" th:text="'Vegan'" style="color: forestgreen;"></p>
+                                                    <label>
+                                                        <input type="hidden" name="isVegetarian" th:value="${menuFood.getRestaurantFood().getVegetarian()}" readonly>
+                                                        <input type="hidden" name="isVegan" th:value="${menuFood.getRestaurantFood().getVegan()}" readonly>
+                                                    </label>
+                                                </div>
+                                                <div class="row text-center">
+                                                    <strong><p th:if="${customerAllergens.containsKey(menuFood.getRestaurantFood().getFoodId())} and ${customerAllergens.get(menuFood.getRestaurantFood().getFoodId())}" style="color: red;">Ενδέχεται να υπάρχει Αλλεργιογόνο</p></strong>
+                                                </div>
+                                                <div class="row">
+                                                    <button class="btn btn-primary btn-sm mt-3 mb-3" th:unless="${customerFavouriteFoodNames.contains(menuFood.getRestaurantFood().getName())} and ${customerFavouriteFoodDescription.contains(menuFood.getRestaurantFood().getDescription())}" type="submit" name="foodAction" value="add">Προσθήκη Αξιολόγησης</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <h6 class="text-center">Βραδινό</h6>
+                    <div class="container mt-4">
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6 col-md-4" th:each="menuFood, iterDinner: ${item.getDinner()}">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="card-body" data-aos="flip-left">
+                                        <form action="/RestaurantMenuCustomer/editFavouriteFoodPost" method="post">
+                                            <p class="text-center" th:text="${menuFood.getRestaurantFood().getName()}"></p>
+                                            <label>
+                                                <input
+                                                        th:attr="data-bs-target='#dinnerDescription'+${iter.index}+${iterDinner.index}"
+                                                        type="hidden" name="foodName"
+                                                        th:value="${menuFood.getRestaurantFood().getName()}" readonly>
+                                            </label>
+                                            <div class="card-text">
+                                                <div class="row text-center">
+                                                    <p th:text="${menuFood.getRestaurantFood().getDescription()}"></p>
+                                                    <label>
+                                                        <input type="hidden" name="foodDescription"
+                                                               th:value="${menuFood.getRestaurantFood().getDescription()}" readonly>
+                                                    </label>
+                                                </div>
+                                                <div class="row text-center">
+                                                    <label>
+                                                        <input class="form-control form-control-sm" th:unless="${customerFavouriteFoodNames.contains(menuFood.getRestaurantFood().getName())} and ${customerFavouriteFoodDescription.contains(menuFood.getRestaurantFood().getDescription())}" type="range" name="rating" value="0" min="0" max="5" style="touch-action: pan-y">
+                                                    </label>
+                                                </div>
+                                                <div class="row text-center">
+                                                    <p th:if="${menuFood.getRestaurantFood().getVegetarian() && !menuFood.getRestaurantFood().getVegan()}" th:text="'Vegetarian'" style="color: forestgreen;"></p>
+                                                    <p th:if="${menuFood.getRestaurantFood().getVegetarian() && menuFood.getRestaurantFood().getVegan()}" th:text="'Vegan'" style="color: forestgreen;"></p>
+                                                    <label>
+                                                        <input type="hidden" name="isVegetarian" th:value="${menuFood.getRestaurantFood().getVegetarian()}" readonly>
+                                                        <input type="hidden" name="isVegan" th:value="${menuFood.getRestaurantFood().getVegan()}" readonly>
+                                                    </label>
+                                                </div>
+                                                <div class="row text-center">
+                                                    <strong><p th:if="${customerAllergens.containsKey(menuFood.getRestaurantFood().getFoodId())} and ${customerAllergens.get(menuFood.getRestaurantFood().getFoodId())}" style="color: red;">Ενδέχεται να υπάρχει Αλλεργιογόνο</p></strong>
+                                                </div>
+                                                <div class="row">
+                                                    <button class="btn btn-primary btn-sm mt-3 mb-3" th:unless="${customerFavouriteFoodNames.contains(menuFood.getRestaurantFood().getName())} and ${customerFavouriteFoodDescription.contains(menuFood.getRestaurantFood().getDescription())}" type="submit" name="foodAction" value="add">Προσθήκη Αξιολόγησης</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div data-aos="fade-up" class="mt-5">
+    <h4 th:if="${topFiveDishes.size()==1}" class="text-center">Τo καλύτερo Πιάτo</h4>
+    <h4 th:if="${topFiveDishes.size()>0 && topFiveDishes.size()<5}" class="text-center" th:text="'Τα '+${topFiveDishes.size()}+' καλύτερα Πιάτα'"></h4>
+    <h4 class="text-center" th:if="${topFiveDishes.size()>=5}">Τα 5 καλύτερα Πιάτα</h4>
+</div>
+
+<div th:each="food,iter : ${topFiveDishes}">
+
+    <div class="w-75 mx-auto">
+    <div class="card" data-aos="fade-up">
+        <div class="card-body text-center">
+            <strong><p class="card-title text center" th:text="${iter.index+1}+'ο Πιάτο'"></p></strong>
+            <p class="card-text">Όνομα</p>
+            <strong><p class="card-text" th:text="${food.getRestaurantFood().getName()}"> </p></strong>
+            <p class="card-text">Περιγραφή</p>
+            <strong><p class="card-text" th:text="${food.getRestaurantFood().getDescription()}"> </p></strong>
+
+            <p class="card-text" th:if="${food.getRestaurantFood().getVegetarian() && !food.getRestaurantFood().getVegan()}" th:text="Vegetarian"></p>
+
+            <p class="card-text" th:if="${food.getRestaurantFood().getVegetarian() && food.getRestaurantFood().getVegan()}" th:text="Vegan"></p>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="w-50 mx-auto p-3" data-aos="fade-up">
+    <h4 class="text-center" th:text="'Ποσοστό Vegetarian πιάτων'"></h4>
+    <h5 class="text-center" th:text="${vegetarianDishesPercent}+'%'"></h5>
+</div>
+<br>
+<br>
+<div class="w-50 mx-auto p-3 mb-5" data-aos="fade-up">
+    <h4 class="text-center" th:text="'Ποσοστό Vegan πιάτων'"></h4>
+    <h5 class="text-center" th:text="${veganDishesPercent}+'%'"></h5>
+    <h3></h3>
+</div>
+</div>
+</body>
+<script src="/js/clickedButton.js"></script>
+<script src="/js/confirmDeleteMenuOrSignOut.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+
+</html>
