@@ -1,4 +1,4 @@
-# 🍽️Student Restaurant App
+# 🍽️Student Restaurant Menu App
 
 
 
