@@ -240,7 +240,7 @@ Any attempt to use, republish, or incorporate this code into other projects—wh
 
 
 
-For licensing inquiries or collaboration requests, please contact via email: theftzoumi \_at\_ gmail \_dot\_ com .
+For licensing inquiries or collaboration requests, please contact via email: theftzoumi _at_ gmail _dot_ com .
 
 
 
