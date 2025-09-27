@@ -38,67 +38,66 @@
 
 - 👤For Admins:
 
-- 🔑Login
+	- 🔑Login
 
-- 👀See the weekly menu
+	- 👀See the weekly menu
 
-- ➕️Insert menu
+	- ➕️Insert menu
 
-- 🍴Add new food on the new menu
+	- 🍴Add new food on the new menu
 
-- 🔧Edit menu
+	- 🔧Edit menu
 
-- ➖️Delete menu
+	- ➖️Delete menu
 
-- 📝See/Add/delete an allergen
+	- 📝See/Add/delete an allergen
 
-- 📋See the percentage of each allergen
+	- 📋See the percentage of each allergen
 
-- 📣Add/Delete announcements
+	- 📣Add/Delete announcements
 
-- 📊See statistics about:
+	- 📊See statistics about:
 
-- Rated foods 
+		- Rated foods 
+		(The model Baysian approximation for k scale rating is used for this statistic file in project)
 
-- (The model Baysian approximation for k scale rating is used for this statistic file in project)
+		File in project -> RatingsService, countRatings method
 
-- File in project -> RatingsService, countRatings method
+		You can see the source “[here](https://medium.com/tech-that-works/wilson-lower-bound-score-and-bayesian-approximation-for-k-star-scale-rating-to-rate-products-c67ec6e30060)”
 
-- You can see the source “[here](https://medium.com/tech-that-works/wilson-lower-bound-score-and-bayesian-approximation-for-k-star-scale-rating-to-rate-products-c67ec6e30060)”
+		- Vegan foods
 
-- Vegan foods
+		- Vegetarian foods
 
-- Vegetarian foods
+		- Allergens
 
-- Allergens
-
-- ❌️Delete foods from the database
+	- ❌️Delete foods from the database
 
 
 
 - 👤For Customers 
 
- - 🔐Sign up
+	- 🔐Sign up
 
- - 🔑Log in
+ 	- 🔑Log in
 
- - 👀See weekly menu
+ 	- 👀See weekly menu
 
- - 🍴See if food is vegan, vegetarian or allergic personally
+ 	- 🍴See if food is vegan, vegetarian or allergic personally
 
- - ⭐️Rate a food
+ 	- ⭐️Rate a food
 
- - 📣See announcements
+ 	- 📣See announcements
 
- - 📋See allergens
+ 	- 📋See allergens
 
- - ✅️Check allergens
+ 	- ✅️Check allergens
 
- - 📝Manage your rated saved foods
+ 	- 📝Manage your rated saved foods
 
- - 📊See statistics about foods
+ 	- 📊See statistics about foods
 
- - 💻📱(Feel the experience either large or small screens through responsive UI)
+ 	- 💻📱(Feel the experience either large or small screens through responsive UI)
 
 
 
