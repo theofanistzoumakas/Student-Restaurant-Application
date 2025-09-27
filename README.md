@@ -4,7 +4,7 @@
 
 ## 🌐A web application design for student restaurants, where student restaurant admins can manage a week menu and customers can have a personalized experience. 
 
-**It was developed for my thesis at the Department of Informatics of University of Piraeus ** (year 2025).
+** It was developed for my thesis at the Department of Informatics of University of Piraeus ** (year 2025).
 
 
 
