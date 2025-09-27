@@ -6,7 +6,8 @@
 
 **It was developed for my thesis at the Department of Informatics of University of Piraeus** (year 2025).
 
-
+> ℹ️ This project is not open source and does not grant any usage rights.
+> For usage terms and legal information, see 🔒 [Code Ownership & Usage Terms](#-code-ownership--usage-terms).
 
 ## 🏗Built with:
 
@@ -178,7 +179,7 @@ cd student-restaurant-app
 
 3. Download/Open the PgAdmin
 
-4. Create a new databse
+4. Create a new database
 
 5. Connect the database with the project, following the instructions below:
 
