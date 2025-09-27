@@ -4,7 +4,7 @@
 
 ## 🌐A web application design for student restaurants, where student restaurant admins can manage a week menu and customers can have a personalized experience. 
 
-** It was developed for my thesis at the Department of Informatics of University of Piraeus ** (year 2025).
+**It was developed for my thesis at the Department of Informatics of University of Piraeus** (year 2025).
 
 
 
@@ -104,7 +104,7 @@
 
 ## 🎯Purpose 
 
-This goal for student restaurant web app was achieved within the framework of my thesis, which concerned the analysis, design and construction of a comprehensive and functional software, developed using Spring Boot framework with a server. ** It is developed solely for academic and research purposes. **
+This goal for student restaurant web app was achieved within the framework of my thesis, which concerned the analysis, design and construction of a comprehensive and functional software, developed using Spring Boot framework with a server. **It is developed solely for academic and research purposes.**
 
 
 
