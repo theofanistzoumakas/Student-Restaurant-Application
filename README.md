@@ -196,7 +196,7 @@ cd student-restaurant-app
 
 6. In SignUpAdmin file, fill your password and your username for the admin. 
 
-**The admin in this project is one and only and is created only once, when the app is first launched. **
+**The admin in this project is one and only and is created only once, when the app is first launched.**
 
 ```bash
 
