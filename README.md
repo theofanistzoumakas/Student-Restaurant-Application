@@ -171,8 +171,6 @@ git clone https://github.com/theofanistzoumakas/student-restaurant-app.git
 
 cd student-restaurant-app
 
-
-
 ```
 
 2. Open the project in IntelliJ IDEA
@@ -197,15 +195,15 @@ cd student-restaurant-app
 
 6. In SignUpAdmin file, fill your password and your username for the admin. 
 
-**The admin in this project is one and only and is created only once, when the app is first launched.**
+	**The admin in this project is one and only and is created only once, when the app is first launched.**
 
-```bash
+	```bash
 
-String pass_result = ...("YOUR_PASSWORD");
+	String pass_result = ...("YOUR_PASSWORD");
 
-RestaurantUser admin = new RestaurantUser("YOUR_USERNAME",pass_result);
+	RestaurantUser admin = new RestaurantUser("YOUR_USERNAME",pass_result);
 
-```
+	```
 
 7. Build and run the app.
 
@@ -220,7 +218,7 @@ localhost:8080/Home/login
 ```
 
 
-**_📽️Demo Video:_**
+## **_📽️Demo Video:_**
 [See the project's demo video here](assets/project-demo.mp4)
 
 
