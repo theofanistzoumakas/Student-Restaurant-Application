@@ -1,12 +1,13 @@
-# 🍽️Student Restaurant App
+# 🍽️Student Restaurant Menu App
 
 
 
 ## 🌐A web application design for student restaurants, where student restaurant admins can manage a week menu and customers can have a personalized experience. 
 
-**It was developed for my thesis at the Department of Informatics of University of Piraeus** (year 2025).
+**It was developed for my thesis at the Department of Informatics at the University of Piraeus** (year 2025).
 
-
+> ℹ️ This project is not open source and does not grant any usage rights.
+> For usage terms and legal information, see 🔒 [Code Ownership & Usage Terms](#-code-ownership--usage-terms).
 
 ## 🏗Built with:
 
@@ -178,7 +179,7 @@ cd student-restaurant-app
 
 3. Download/Open the PgAdmin
 
-4. Create a new databse
+4. Create a new database
 
 5. Connect the database with the project, following the instructions below:
 
@@ -196,7 +197,7 @@ cd student-restaurant-app
 
 6. In SignUpAdmin file, fill your password and your username for the admin. 
 
-**The admin in this project is one and only and is created only once, when the app is first launched. **
+**The admin in this project is one and only and is created only once, when the app is first launched.**
 
 ```bash
 
@@ -240,7 +241,7 @@ Any attempt to use, republish, or incorporate this code into other projects—wh
 
 
 
-For licensing inquiries or collaboration requests, please contact via email: theftzoumi \_at\_ gmail \_dot\_ com .
+For licensing inquiries or collaboration requests, please contact via email: theftzoumi _at_ gmail _dot_ com .
 
 
 
