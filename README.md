@@ -217,6 +217,8 @@ localhost:8080/Home/login
 
 ```
 
+## 📽️ Demo Video
+You can take a look on project's demo [here](assets/project-demo.mp4)
 
 
 ## 🔒 Code Ownership \& Usage Terms
