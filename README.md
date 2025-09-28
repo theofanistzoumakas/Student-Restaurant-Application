@@ -11,25 +11,25 @@
 
 ## 🏗Built with:
 
- - Spring Boot
+ - Spring Boot.
 
-- Spring Security
+- Spring Security.
 
-- Java version 17 as core development language
+- Java version 17 as core development language.
 
-- PgAdmin for database
+- PgAdmin for database.
 
-- Hibernate
+- Hibernate.
 
-- Thymeleaf for dynamic UI
+- Thymeleaf for dynamic UI.
 
-- HTML for UI
+- HTML for UI.
 
-- Javascript for dynamic UI
+- Javascript for dynamic UI.
 
-- Bootstrap for UI style
+- Bootstrap for UI style.
 
-- Animate and Scroll Library for UI style
+- Animate and Scroll Library for UI style.
 
 
 
@@ -39,66 +39,64 @@
 
 - 👤For Admins:
 
-	- 🔑Login
+	- 🔑Login.
 
-	- 👀See the weekly menu
+	- 👀See the weekly menu.
 
-	- ➕️Insert menu
+	- ➕️Insert menu (if there are days of the week when there is no menu).
 
-	- 🍴Add new food on the new menu
+	- 🍴Add new food on the new menu.
 
-	- 🔧Edit menu
+	- 🔧Edit menu.
 
-	- ➖️Delete menu
+	- ➖️Delete menu.
 
-	- 📝See/Add/delete an allergen
+	- 📝See/Add/delete an allergen.
 
-	- 📋See the percentage of each allergen
-
-	- 📣Add/Delete announcements
+	- 📣Add/Delete announcements.
 
 	- 📊See statistics about:
 
-		- Rated foods 
-			- (The model Baysian approximation for k scale rating is used for this statistic file in project)
+		- Rated foods.
+			- **(The model Baysian approximation for k scale rating is used for food ratings)**
 
                 File in project -> RatingsService, countRatings method
 
 				**You can see the source “[here](https://medium.com/tech-that-works/wilson-lower-bound-score-and-bayesian-approximation-for-k-star-scale-rating-to-rate-products-c67ec6e30060)”**
 
-		- Vegan foods
+		- Vegan foods.
 
-		- Vegetarian foods
+		- Vegetarian foods.
 
-		- Allergens
+		- Allergens.
 
-	- ❌️Delete foods from the database
+	- ❌️Delete foods from the database.
 
 
 
 - 👤For Customers 
 
-	- 🔐Sign up
+	- 🔐Sign up.
 
- 	- 🔑Log in
+ 	- 🔑Log in.
 
- 	- 👀See weekly menu
+ 	- 👀See weekly menu.
 
- 	- 🍴See if food is vegan, vegetarian or allergic personally
+ 	- 🍴See if food is vegan, vegetarian or allergic personally.
 
- 	- ⭐️Rate a food
+ 	- ⭐️Rate a food.
 
- 	- 📣See announcements
+ 	- 📣See announcements.
 
- 	- 📋See allergens
+ 	- 📋See allergens.
 
- 	- ✅️Check allergens
+ 	- ✅️Check allergens.
 
- 	- 📝Manage your rated saved foods
+ 	- 📝Manage your rated saved foods.
 
- 	- 📊See statistics about foods
+ 	- 📊See statistics about foods.
 
- 	- 💻📱(Feel the experience either large or small screens through responsive UI)
+ 	- 💻📱(Feel the experience either large or small screens through responsive UI).
 
 
 
@@ -120,13 +118,13 @@ The basic structure of the project and each layer's role is presented below:
 
 - 🧠Back-end:
 
-  - Controller-> http handling
+  - Controller-> http handling.
 
-  - Model-> jpa entities
+  - Model-> jpa entities.
 
-  - Repository-> Hibernate repositories for CRUD features
+  - Repository-> Hibernate repositories for CRUD features.
 
-  - Service -> business logic
+  - Service -> business logic.
 
 
 
@@ -136,26 +134,26 @@ The basic structure of the project and each layer's role is presented below:
 
    - Static
 
-     - Css-> styling pages
+     - Css-> styling pages.
 
-     - Js-> for dynamic UI
+     - Js-> for dynamic UI.
 
   - Templates
 
-     - Home -> Login and Sign up pages
+     - Home -> Login and Sign up pages.
 
-     - RestaurantAdmin-> Admin's pages
+     - RestaurantAdmin-> Admin's pages.
 
-     - RestaurantCustomer -> Customer pages
+     - RestaurantCustomer -> Customer pages.
 
   - (Some pages are common for admin and customers and they are on Templates folder)
 
 
 
 ## ❗Prerequisites
- - IntelliJ IDEA for the project
- - PgAdmin for the database
- - Internet connetion for UI (Bootstrap and Animate on Scroll Library)
+ - IntelliJ IDEA for the project.
+ - PgAdmin for the database.
+ - Internet connetion for UI (Bootstrap and Animate on Scroll Library).
 
 
 
@@ -173,11 +171,11 @@ cd student-restaurant-app
 
 ```
 
-2. Open the project in IntelliJ IDEA
+2. Open the project in IntelliJ IDEA.
 
-3. Download/Open the PgAdmin
+3. Download/Open the PgAdmin.
 
-4. Create a new database
+4. Create a new database.
 
 5. Connect the database with the project, following the instructions below:
 
@@ -207,7 +205,7 @@ cd student-restaurant-app
 
 7. Build and run the app.
 
-8. Open a browser
+8. Open a browser.
 
 9. Type in url:
 
@@ -218,7 +216,7 @@ localhost:8080/Home/login
 ```
 
 ## 📽️ Demo Video
-You can take a look on project's demo [here](assets/project-demo.mp4)
+You can take a look on project's demo [here](assets/project-demo.mp4) .
 
 
 ## 🔒 Code Ownership \& Usage Terms
@@ -233,7 +231,7 @@ Theofanis Tzoumakas (@theofanistzoumakas).
 
 🚫 Unauthorized use is strictly prohibited.
 
-No part of this codebase may be copied, reproduced, modified, distributed, or used in any form without explicit written permission from the owners.
+No part of this codebase may be copied, reproduced, modified, distributed, or used in any form without explicit written permission from the owner.
 
 
 
