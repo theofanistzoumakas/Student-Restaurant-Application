@@ -220,6 +220,9 @@ localhost:8080/Home/login
 ```
 
 
+**_📽️Demo Video:_**
+[See the project's demo video here](assets/project_demo.mp4)
+
 
 ## 🔒 Code Ownership \& Usage Terms
 
